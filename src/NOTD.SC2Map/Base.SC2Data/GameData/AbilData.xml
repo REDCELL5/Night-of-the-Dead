@@ -58,6 +58,7 @@
         <LevelButtonTooltip value="Level 2 Adrenaline"/>
         <LevelButtonTooltip value="Level 3 Adrenaline"/>
         <CmdButtonArray index="Execute" DefaultButtonFace="Adrenaline"/>
+        <Flags index="Transient" value="1"/>
     </CAbilEffectInstant>
     <CAbilBehavior id="AmmoFeedDummy">
         <EditorCategories value="AbilityorEffectType:Units"/>
@@ -138,6 +139,7 @@
         <BehaviorArray value="Bloodlust"/>
         <LevelButtonOnImage value="Assets\Textures\btn-ability-terran-domination.dds"/>
         <LevelButtonOffImage value="Assets\Textures\btn-ability-terran-domination.dds"/>
+        <AutoCastValidatorArray value="CasterNotBloodlust"/>
     </CAbilBehavior>
     <CAbilBehavior id="BoomHeadshot">
         <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
@@ -958,6 +960,7 @@
     <CAbilEffectInstant id="SlowRoast">
         <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
         <Flags index="AllowMovement" value="1"/>
+        <Flags index="AutoCast" value="1"/>
         <Flags index="NoDeceleration" value="1"/>
         <Flags index="Transient" value="1"/>
         <Cost>
@@ -969,14 +972,18 @@
         <TargetFilters value="Biological;Enemy,Air,Missile,Destructible,Dead"/>
         <Range value="1"/>
         <AutoCastAcquireLevel value="Defensive"/>
-        <AutoCastFilters value="Visible;Enemy"/>
+        <AutoCastFilters value="Visible;Player,Ally,Enemy"/>
         <CastIntroTime value="0"/>
         <CmdButtonArray index="Execute" DefaultButtonFace="SlowRoast"/>
+        <AutoCastRange value="1"/>
+        <AutoCastValidatorArray value="CasterNotSlowRoast"/>
+        <AcquirePriority value="0"/>
     </CAbilEffectInstant>
     <CAbilEffectInstant id="HarvesterofSorrow">
         <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
         <Effect index="0" value="HarvesterofSorrowApply"/>
         <Flags index="AllowMovement" value="1"/>
+        <Flags index="AutoCast" value="1"/>
         <Flags index="NoDeceleration" value="1"/>
         <Flags index="Transient" value="1"/>
         <Cost>
@@ -987,10 +994,10 @@
         <RefundFraction Charge="0" Cooldown="0"/>
         <TargetFilters value="Biological;Enemy,Air,Missile,Destructible,Dead"/>
         <Range value="1"/>
-        <AutoCastAcquireLevel value="Defensive"/>
-        <AutoCastFilters value="Visible;Enemy"/>
+        <AutoCastFilters value="Visible;Ally,Neutral,Enemy"/>
         <CastIntroTime value="0"/>
         <CmdButtonArray index="Execute" DefaultButtonFace="HarvesterofSorrow"/>
+        <AutoCastValidatorArray value="CasterNotHarvesterofSorrow"/>
     </CAbilEffectInstant>
     <CAbilEffectTarget id="FieldRetrofit">
         <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
@@ -1388,6 +1395,7 @@
         <Effect index="0" value="RemoveStealthMatrixCloak"/>
         <Effect value="RemoveStealthMatrixCloak"/>
         <CmdButtonArray index="Execute" DefaultButtonFace="StealthMatrixDeactivate"/>
+        <Flags index="Transient" value="1"/>
     </CAbilEffectInstant>
     <CAbilEffectTarget id="SurgicalLaser">
         <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
@@ -1531,6 +1539,7 @@
     <CAbilEffectInstant id="VeteransFocus">
         <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
         <Flags index="AllowMovement" value="1"/>
+        <Flags index="AutoCast" value="1"/>
         <Flags index="NoDeceleration" value="1"/>
         <Flags index="Transient" value="1"/>
         <Cost>
@@ -1541,10 +1550,10 @@
         <RefundFraction Charge="0" Cooldown="0"/>
         <TargetFilters value="Biological;Enemy,Air,Missile,Destructible,Dead"/>
         <Range value="1"/>
-        <AutoCastAcquireLevel value="Defensive"/>
-        <AutoCastFilters value="Visible;Enemy"/>
+        <AutoCastFilters value="Visible;Ally,Neutral,Enemy"/>
         <CastIntroTime value="0"/>
         <CmdButtonArray index="Execute" DefaultButtonFace="VeteransFocus"/>
+        <AutoCastValidatorArray value="CasterNotVeteransFocus"/>
     </CAbilEffectInstant>
     <CAbilEffectInstant id="Sprint2">
         <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
@@ -1553,6 +1562,7 @@
         <Effect value="SprintLevel3"/>
         <Effect value="SprintLevel4"/>
         <Flags index="AllowMovement" value="1"/>
+        <Flags index="AutoCast" value="1"/>
         <Flags index="NoDeceleration" value="1"/>
         <Flags index="Transient" value="1"/>
         <Cost>
@@ -1582,6 +1592,10 @@
             <Flags index="ToSelection" value="1"/>
         </CmdButtonArray>
         <AbilSetId value="Sprint"/>
+        <AutoCastAcquireLevel value="Defensive"/>
+        <AutoCastFilters value="Visible;Player,Ally,Enemy"/>
+        <AutoCastRange value="1"/>
+        <AcquirePriority value="0"/>
     </CAbilEffectInstant>
     <CAbilEffectTarget id="Penance">
         <EditorCategories value="AbilityorEffectType:Units"/>
@@ -2142,6 +2156,12 @@
         <UninterruptibleArray index="Cast" value="1"/>
         <AINotifyEffect value="ExhaustPersistent"/>
         <CmdButtonArray index="Execute" DefaultButtonFace="Exhaust"/>
+        <Flags index="AutoCast" value="1"/>
+        <Flags index="Transient" value="1"/>
+        <AutoCastAcquireLevel value="Defensive"/>
+        <AutoCastFilters value="Visible;Player,Ally,Enemy"/>
+        <AutoCastRange value="1"/>
+        <AcquirePriority value="0"/>
     </CAbilEffectInstant>
     <CAbilEffectTarget id="Shrinker">
         <EditorCategories value="AbilityorEffectType:Units"/>
@@ -2201,6 +2221,10 @@
         <UninterruptibleArray index="Cast" value="1"/>
         <LevelButtonTooltip value="Level 2 Targeting Array"/>
         <CmdButtonArray index="Execute" DefaultButtonFace="TargetingArray"/>
+        <Flags index="AutoCast" value="1"/>
+        <Flags index="Transient" value="1"/>
+        <AutoCastFilters value="Visible;Ally,Neutral,Enemy"/>
+        <AutoCastValidatorArray value="CasterNotDead"/>
     </CAbilEffectInstant>
     <CAbilBehavior id="Detonate">
         <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
@@ -2224,6 +2248,7 @@
             <Cooldown Link="Abil/Turbo" TimeUse="12"/>
         </Cost>
         <BehaviorArray value="IronHand"/>
+        <AutoCastValidatorArray value="CasterNotIronHand"/>
     </CAbilBehavior>
     <CAbilEffectTarget id="TheHorror">
         <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
@@ -2278,6 +2303,7 @@
             <Cooldown Link="Abil/Turbo" TimeUse="10"/>
         </Cost>
         <BehaviorArray value="TargetingComputer"/>
+        <AutoCastValidatorArray value="CasterNotTargetingComputer"/>
     </CAbilBehavior>
     <CAbilMorph id="UnburrowBroodmother">
         <AbilSetId value="BrwU"/>
@@ -2721,9 +2747,12 @@
         <Flags index="AutoCast" value="1"/>
         <Flags index="AutoCastOn" value="1"/>
         <Flags index="ReExecutable" value="1"/>
+        <Flags index="RequireTargetVision" value="0"/>
         <Arc value="360"/>
         <AutoCastFilters value="Heroic;Ally,Enemy,Massive"/>
         <AutoCastRange value="1"/>
+        <Range value="1"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="Pickup"/>
     </CAbilEffectTarget>
     <CAbilEffectInstant id="IonCannonBeam">
         <EditorCategories value="AbilityorEffectType:Units"/>
@@ -3418,6 +3447,9 @@
             <Cooldown TimeUse="12"/>
         </Cost>
         <CmdButtonArray index="Execute" DefaultButtonFace="Sigma"/>
+        <Flags index="AutoCast" value="1"/>
+        <Flags index="Transient" value="1"/>
+        <AutoCastFilters value="Visible;Ally,Neutral,Enemy"/>
     </CAbilEffectInstant>
     <CAbilEffectTarget id="Smite">
         <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
@@ -3507,6 +3539,7 @@
         </Cost>
         <LevelButtonTooltip value="Level 2 Borrowed Time"/>
         <CmdButtonArray index="Execute" DefaultButtonFace="BorrowedTime"/>
+        <Flags index="Transient" value="1"/>
     </CAbilEffectInstant>
     <CAbilEffectInstant id="BuildMines">
         <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
@@ -3718,6 +3751,12 @@
         </Cost>
         <LevelButtonTooltip value="Level 2 Mental Projection"/>
         <CmdButtonArray index="Execute" DefaultButtonFace="MentalProjection"/>
+        <Flags index="AutoCast" value="1"/>
+        <Flags index="Transient" value="1"/>
+        <AutoCastAcquireLevel value="Defensive"/>
+        <AutoCastFilters value="Visible;Player,Ally,Enemy"/>
+        <AutoCastRange value="1"/>
+        <AcquirePriority value="0"/>
     </CAbilEffectInstant>
     <CAbilEffectTarget id="PsionicTempest">
         <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
@@ -3914,6 +3953,7 @@
         <Effect index="0" value="HeightenedSensesLevel1Search"/>
         <Effect value="HeightenedSensesLevel2Search"/>
         <Effect value="HeightenedSensesLevel3Search"/>
+        <Flags index="Transient" value="1"/>
     </CAbilEffectInstant>
     <CAbilBehavior id="ItsMeAgain">
         <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
@@ -3994,14 +4034,18 @@
     </CAbilEffectTarget>
     <CAbilEffectInstant id="Overdrive">
         <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
-        <AutoCastFilters value="-;-"/>
+        <AutoCastFilters value="-;Player,Ally,Enemy"/>
         <AINotifyEffect value=""/>
         <CmdButtonArray index="Execute" DefaultButtonFace="Overdrive" Requirements="Overdrive"/>
         <Cost>
             <Vital index="Energy" value="20"/>
             <Cooldown Location="Player" TimeUse="45"/>
         </Cost>
+        <Flags index="AutoCast" value="1"/>
         <Flags index="Transient" value="1"/>
+        <AutoCastAcquireLevel value="Defensive"/>
+        <AcquirePriority value="0"/>
+        <AutoCastRange value="1"/>
     </CAbilEffectInstant>
     <CAbilEffectTarget id="PrecisionShot">
         <EditorCategories value="AbilityorEffectType:Units"/>
@@ -4094,6 +4138,7 @@
             <Cooldown TimeUse="4"/>
         </Cost>
         <CmdButtonArray index="Execute" DefaultButtonFace="SonicTrapLevel1"/>
+        <AbilSetId value="SonicTrap"/>
     </CAbilEffectInstant>
     <CAbilEffectInstant id="SonicTrapLevel2">
         <EditorCategories value="AbilityorEffectType:Units"/>
@@ -4123,6 +4168,7 @@
         <LevelButtonTooltip value="Level 2 Surgical Strike"/>
         <LevelButtonTooltip value="Level 3 Surgical Strike"/>
         <CmdButtonArray index="Execute" DefaultButtonFace="SurgicalStrike"/>
+        <Flags index="Transient" value="1"/>
     </CAbilEffectInstant>
     <CAbilBehavior id="Synergy">
         <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>
@@ -4169,6 +4215,7 @@
             <Cooldown TimeUse="20"/>
         </Cost>
         <CmdButtonArray index="Execute" DefaultButtonFace="Escape" Requirements="StealthMatrixDeactiveButton2"/>
+        <Flags index="Transient" value="1"/>
     </CAbilEffectInstant>
     <CAbilEffectInstant id="BlindlingExplode">
         <EditorCategories value="Race:Zerg,AbilityorEffectType:Units"/>
@@ -4207,6 +4254,7 @@
     <CAbilEffectInstant id="FocusedFire">
         <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
         <Flags index="AllowMovement" value="1"/>
+        <Flags index="AutoCast" value="1"/>
         <Flags index="NoDeceleration" value="1"/>
         <Flags index="Transient" value="1"/>
         <Cost>
@@ -4214,6 +4262,8 @@
             <Cooldown TimeUse="5"/>
         </Cost>
         <CmdButtonArray index="Execute" DefaultButtonFace="FocusedFire"/>
+        <AutoCastFilters value="Visible;Ally,Neutral,Enemy"/>
+        <AutoCastValidatorArray value="CasterNotFocusedFire"/>
     </CAbilEffectInstant>
     <CAbilBehavior id="GhostCloak">
         <Cost index="0">
@@ -4241,6 +4291,8 @@
         <LevelButtonOnTooltip value="Level 2 I&apos;m Your Father"/>
         <LevelButtonOnTooltip value="Level 3 I&apos;m Your Father"/>
         <Flags index="Toggle" value="1"/>
+        <Flags index="Transient" value="1"/>
+        <AutoCastValidatorArray value="CasterNotIYFCombine"/>
     </CAbilBehavior>
     <CAbilBehavior id="MasterMarksman">
         <EditorCategories value="AbilityorEffectType:Units"/>
@@ -4355,6 +4407,12 @@
         <Effect index="0" value="RestorationSet"/>
         <AINotifyEffect value="RestorationSearch"/>
         <CmdButtonArray index="Execute" DefaultButtonFace="Restoration"/>
+        <Flags index="AutoCast" value="1"/>
+        <Flags index="Transient" value="1"/>
+        <AutoCastAcquireLevel value="Defensive"/>
+        <AutoCastFilters value="Visible;Player,Ally,Enemy"/>
+        <AutoCastRange value="1"/>
+        <AcquirePriority value="0"/>
     </CAbilEffectInstant>
     <CAbilBehavior id="DefensivePlating">
         <EditorCategories value="AbilityorEffectType:Units"/>
@@ -4876,7 +4934,6 @@
         <Flags index="Transient" value="1"/>
     </CAbilLearn>
     <CAbilEffectInstant id="Refresher">
-        <Alignment value="Positive"/>
         <EditorCategories value="AbilityorEffectType:Units"/>
         <Cost>
             <Vital index="Shields" value="-30"/>
@@ -4885,7 +4942,12 @@
         </Cost>
         <CmdButtonArray index="Execute" DefaultButtonFace="Refresher"/>
         <Effect index="0" value="ApplyRefresher"/>
+        <Flags index="AutoCast" value="1"/>
         <Flags index="Transient" value="1"/>
+        <AutoCastAcquireLevel value="Defensive"/>
+        <AutoCastFilters value="Visible;Player,Ally,Enemy"/>
+        <AutoCastRange value="1"/>
+        <AcquirePriority value="0"/>
     </CAbilEffectInstant>
     <CAbilEffectTarget id="RepairNOTD">
         <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
@@ -5079,6 +5141,7 @@
         <Flags index="Toggle" value="1"/>
         <Flags index="Transient" value="1"/>
         <CmdButtonArray index="On" DefaultButtonFace="Stealth"/>
+        <AutoCastValidatorArray value="CasterNotCloakedCombine"/>
     </CAbilBehavior>
     <CAbilEffectInstant id="ConcentratedFire">
         <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
@@ -5086,6 +5149,7 @@
         <Effect value="SuppressiveFireLevel2"/>
         <Effect value="SuppressiveFireLevel3"/>
         <Flags index="AllowMovement" value="1"/>
+        <Flags index="AutoCast" value="1"/>
         <Flags index="NoDeceleration" value="1"/>
         <Flags index="Transient" value="1"/>
         <Cost>
@@ -5096,12 +5160,12 @@
         <RefundFraction Charge="0" Cooldown="0"/>
         <TargetFilters value="Biological;Enemy,Air,Missile,Destructible,Dead"/>
         <Range value="1"/>
-        <AutoCastAcquireLevel value="Defensive"/>
-        <AutoCastFilters value="Visible;Enemy"/>
+        <AutoCastFilters value="Visible;Ally,Neutral,Enemy"/>
         <CastIntroTime value="0"/>
         <CmdButtonArray index="Execute" DefaultButtonFace="ConcentratedFire"/>
         <LevelButtonTooltip value="Suppresive Fire Level 2"/>
         <LevelButtonTooltip value="Suppresive Fire Level 3"/>
+        <AutoCastValidatorArray value="CasterNotConcentratedFireCombine"/>
     </CAbilEffectInstant>
     <CAbilEffectTarget id="MindBlast">
         <Cost index="0">
@@ -5214,6 +5278,7 @@
         <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
         <Effect index="0" value="SprintSpeedIncrease"/>
         <Flags index="AllowMovement" value="1"/>
+        <Flags index="AutoCast" value="1"/>
         <Flags index="NoDeceleration" value="1"/>
         <Flags index="Transient" value="1"/>
         <Cost>
@@ -5224,6 +5289,10 @@
         <CmdButtonArray index="Execute" DefaultButtonFace="Sprint">
             <Flags index="ToSelection" value="1"/>
         </CmdButtonArray>
+        <AutoCastAcquireLevel value="Defensive"/>
+        <AutoCastFilters value="Visible;Player,Ally,Enemy"/>
+        <AutoCastRange value="1"/>
+        <AcquirePriority value="0"/>
     </CAbilEffectInstant>
     <CAbilEffectInstant id="Stimpack">
         <CastIntroTime value="0.05"/>
@@ -5236,6 +5305,11 @@
         <CmdButtonArray index="Execute" Requirements="">
             <Flags index="ToSelection" value="0"/>
         </CmdButtonArray>
+        <Flags index="AutoCast" value="1"/>
+        <AutoCastAcquireLevel value="Defensive"/>
+        <AutoCastFilters value="Visible;Player,Ally,Enemy"/>
+        <AutoCastRange value="1"/>
+        <AcquirePriority value="0"/>
     </CAbilEffectInstant>
     <CAbilEffectInstant id="Talents">
         <AbilSetId value="Talents"/>
@@ -5277,6 +5351,8 @@
         <LevelButtonOnTooltip value="Level 2 Taunt"/>
         <LevelButtonOnTooltip value="Level 3 Taunt"/>
         <Flags index="Toggle" value="1"/>
+        <Flags index="Transient" value="1"/>
+        <AutoCastValidatorArray value="CasterNotTauntCombine"/>
     </CAbilBehavior>
     <CAbilEffectInstant id="TeamLocation">
         <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
@@ -5303,6 +5379,7 @@
         <BehaviorArray value="Turbo"/>
         <Flags index="Toggle" value="1"/>
         <Flags index="Transient" value="1"/>
+        <AutoCastValidatorArray value="CasterNotTurbo"/>
     </CAbilBehavior>
     <CAbilEffectTarget id="VolatileInjection">
         <EditorCategories value="AbilityorEffectType:Units,Race:Terran"/>

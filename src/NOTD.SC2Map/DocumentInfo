@@ -8,7 +8,7 @@
         <Value>bnet:Night of the Dead Asset Data/0.0/190127,file:Mods/Night of the Dead/bin/Night of the Dead Assets.SC2Mod</Value>
         <Value>bnet:Swarm (Campaign)/0.0/999,file:Campaigns/Swarm.SC2Campaign</Value>
         <Value>bnet:Swarm Story (Campaign)/0.0/999,file:Campaigns/SwarmStory.SC2Campaign</Value>
-        <Value>bnet:Utility Library/0.0/31208</Value>
+        <Value>bnet:Utility Library/0.0/31208,file:Mods\Night of the Dead\bin\Utility Library.SC2Mod</Value>
     </Dependencies>
     <Screenshot>
         <File>
@@ -65,6 +65,17 @@
             <Value>2.153</Value>
             <Value>2.154</Value>
             <Value>2.155</Value>
+            <Value>2.156</Value>
+            <Value>2.157</Value>
+            <Value>2.158</Value>
+            <Value>2.159</Value>
+            <Value>2.160</Value>
+            <Value>2.161</Value>
+            <Value>2.162</Value>
+            <Value>2.163</Value>
+            <Value>2.164</Value>
+            <Value>2.165</Value>
+            <Value>2.166</Value>
         </Version>
         <Date>
             <Value>2/12/2015</Value>
@@ -74,6 +85,17 @@
             <Value>12/24/2016</Value>
             <Value>1/15/2017</Value>
             <Value>2/5/2017</Value>
+            <Value>2/26/2017</Value>
+            <Value>3/25/2017</Value>
+            <Value>3/25/2017</Value>
+            <Value>3/26/2017</Value>
+            <Value>4/1/2017</Value>
+            <Value>5/6/2017</Value>
+            <Value>5/27/2017</Value>
+            <Value>6/17/2017</Value>
+            <Value>7/2/2017</Value>
+            <Value>7/9/2017</Value>
+            <Value>7/30/2017</Value>
         </Date>
         <Notes>
             <Value>1,2,3,4,5,6,7</Value>
@@ -83,10 +105,22 @@
             <Value>30,31,32,33,34,35,36,37,38,39,40,41</Value>
             <Value>42,43,44,45</Value>
             <Value>46,47,48,49</Value>
+            <Value>50,51</Value>
+            <Value>52</Value>
+            <Value>53,54,55,56,57,58</Value>
+            <Value>59,60,61</Value>
+            <Value>62,63</Value>
+            <Value>64,65,66,67,68,69,70</Value>
+            <Value>71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86</Value>
+            <Value>87,88,89,90,91,92,93,94,95</Value>
+            <Value>96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126</Value>
+            <Value>127,128,129,130,131,132,133,134,135</Value>
+            <Value>136,137,138,139,140,141,142,143</Value>
         </Notes>
     </PatchNote>
     <Preload>
         <Value>AssetFile;NOTD Models\ghoulred.m3</Value>
+        <Value>AssetFile;UI\Layout\TeamStatus.SC2Layout</Value>
         <Value>Bank;notdbank5</Value>
         <Value>Bank;NOTDBackup</Value>
     </Preload>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="us-ascii"?>
 <Components>
+    <Optimized/>
     <DataComponent Type="gada">GameData</DataComponent>
     <DataComponent Type="text" Locale="enUS">GameText</DataComponent>
     <DataComponent Type="info">DocumentInfo</DataComponent>
@@ -15,4 +16,5 @@
     <DataComponent Type="cine">Cinematics</DataComponent>
     <DataComponent Type="text" Locale="zhCN">GameText</DataComponent>
     <DataComponent Type="text" Locale="zhTW">GameText</DataComponent>
+    <DataComponent Type="text" Locale="frFR">GameText</DataComponent>
 </Components>

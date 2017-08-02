@@ -233,6 +233,16 @@
         <On Terms="ActorCreation; ValidateUnit HasBallisticsLevel2" Send="SetScale 1.500000"/>
     </CActorModel>
     <CActorSound id="GenericAttackLaunchSound2" parent="GenericAttackSound"/>
+    <CActorModel id="GhostOverlaySelection" parent="ModelAddition">
+        <EditorCategories value=""/>
+        <On Terms="ActorCreation.GhostOverlaySelection" Send="Create"/>
+        <On Terms="ActorCreation.GhostOverlaySelection" Send="SetOpacity"/>
+        <Model value="Ghost"/>
+    </CActorModel>
+    <CActorModel id="Infection" parent="ModelAnimationStyleContinuous">
+        <On Terms="Behavior.Infection.On" Send="Create"/>
+        <On Terms="Behavior.Infection.Off" Send="Destroy"/>
+    </CActorModel>
     <CActorModel id="LevelUp2" parent="ModelAddition">
         <Terms value="ValidateUnit AboveLevel1"/>
         <Inherits index="BaseModelScale" value="0"/>
@@ -1958,20 +1968,6 @@
         <Macros value="ZergBurrowStandardAnimMacro"/>
         <Macros value="ZergSmallBurrowEffects"/>
         <Macros value="UnloadDropAnim"/>
-        <On index="0" Send="Create SoundEmitter Immortal2_Ambience"/>
-        <On index="49" Terms="WeaponStop.*.AttackStop" Send="AnimBracketStop Attack"/>
-        <On index="50" Terms="Abil.attack.ReadyStop" Send="AnimGroupRemove Ready"/>
-        <On index="51" Terms="UnitBirth.TitanBurrowed" Send="Create"/>
-        <On index="52" Terms="UnitBirth.TitanBurrowed" Send="AnimBracketStart Burrow Burrow IGNORE Unburrow ClosingFull,OpeningPlayForever,Instant"/>
-        <On index="53" Terms="AbilMorph.*.Finish; MorphTo InfestorTerran; MorphFrom InfestedTerransEgg" Send="Create"/>
-        <On index="54" Terms="AbilMorph.*.Finish; MorphTo InfestorTerran; MorphFrom InfestedTerransEgg" Send="Create InfestedTerranEggDeath"/>
-        <On index="61" Terms="AbilMorph.*.Finish; MorphTo InfestorTerran; MorphFrom InfestedTerransEgg" Send="AnimBracketStart BSD Birth,01 Stand Death"/>
-        <On index="62" Terms="AbilMorph.*.Cancel; MorphFrom Titan; MorphTo TitanBurrowed" Send="AnimClear Burrow"/>
-        <On Terms="AbilMorph.*.Finish; MorphTo Titan; MorphFrom TitanBurrowed" Send="AnimBracketStop Burrow"/>
-        <On Terms="UnitCreation.Titan" Send="SetTintColor 64,96,4"/>
-        <On Terms="UnitBirth.Titan" Send="SetTintColor 64,96,4"/>
-        <On Terms="UnitCreation.TitanBurrowed" Send="SetTintColor 64,96,4"/>
-        <On Terms="UnitBirth.TitanBurrowed" Send="SetTintColor 64,96,4"/>
         <Scale value="3.000000"/>
         <DeathArray index="Normal" ModelLink="InfestedCivilianDeath" SoundLink="InfestedTerran_Explode"/>
         <DeathArray index="Disintegrate" ModelLink="InfestorTerranDeathAcid" SoundLink="Uni_DeathFXAcid"/>
@@ -2000,6 +1996,7 @@
             <Image value="Assets\Textures\wireframe-zerg-infestedcolonist.dds"/>
         </Wireframe>
         <BarOffset value="110"/>
+        <On Terms="ActorCreation" Send="SetTintColor 64,96,4"/>
     </CActorUnit>
     <CActorRange id="NoQuarterRange" parent="RangeAbil" abil="NoQuarter">
         <FogVisibility value="Visible"/>
@@ -5067,7 +5064,6 @@
         <On Terms="UnitBirth.Slasher2" Send="AnimBracketStart Burrow Burrow IGNORE Unburrow ClosingFull,OpeningPlayForever,Instant"/>
         <On Terms="UnitDeathCustomize; ValidateUnit IsKillerPhantasm" Send="DeathCustomize Hallucination"/>
         <On Terms="ActorCreation" Send="SetTintColor 200,100,100"/>
-        <On Terms="ActorCreation" Send="AnimSetTimeScale Burrow 0.333000"/>
         <On Terms="ActorCreation" Send="AttachModelOffset SlasherHead SlasherHead {Head 0} -0.025000,0.000000,-0.200000"/>
         <On Terms="ActorCreation" Send="AttachModelOffset SlasherThorn SlasherThorn2 {Head 0} 0.000000,0.400000,0.200000"/>
         <On Terms="ActorCreation" Send="AttachModelOffset SlasherThorn SlasherThorn2 {Head 0} 0.000000,0.600000,0.500000"/>
@@ -5475,6 +5471,7 @@
     <CActorModel id="FungalGrowth">
         <On Terms="Behavior.VenomousExplosion.On" Send="Create"/>
         <On Terms="Behavior.VenomousExplosion.Off" Send="AnimBracketStop BSD"/>
+        <AutoScaleFactor value="2.000000"/>
     </CActorModel>
     <CActorUnit id="Hades" parent="GenericUnitBase" unitName="Hades">
         <On Terms="Abil.attack.ReadyStart" Send="AnimGroupApply Ready"/>
@@ -8375,7 +8372,7 @@
         <ImpactMap index="None" Model="SatchelAnimationExplosion"/>
     </CActorAction>
     <CActorMissile id="StingerMK3MoverMissile" parent="GenericAttackMissile" unitName="StingerMk3Missile">
-        <Model value="VikingFighterWeapon"/>
+        <Model value="ThorAAWeapon"/>
         <BarHeight value="1"/>
         <BarWidth value="1"/>
     </CActorMissile>
@@ -9790,6 +9787,8 @@
         <On Terms="Abil.NovaSnipe.SourceCastStop" Send="AnimBracketStop Spell"/>
         <On Terms="Abil.Domination.SourceCastStart" Send="AnimPlay Spell Work"/>
         <On Terms="UnitMovementUpdate.PsiOps.Walk" Send="AnimClear SnipeSpell"/>
+        <On Terms="ActorCreation.PsiOpsMentalProjection" Send="Create GhostOverlaySelection"/>
+        <On Terms="ActorCreation.PsiOpsMentalProjection" Send="ModelAllowHitTest"/>
         <Model value="Nova"/>
         <Scale value="1.050000"/>
         <BuildModel value="Nova"/>
@@ -11456,7 +11455,6 @@
         <On Terms="UnitBirth.Devourer2" Send="AnimBracketStart Burrow Burrow IGNORE Unburrow ClosingFull,OpeningPlayForever,Instant 0.333000 AsTimeScale"/>
         <On Terms="AbilMorph.*.Cancel; MorphFrom Devourer; MorphTo Devourer2" Send="AnimClear Burrow"/>
         <On Terms="AbilMorph.*.Finish; MorphTo Devourer; MorphFrom Devourer2" Send="AnimBracketStop Burrow"/>
-        <On Terms="ActorCreation" Send="AnimSetTimeScale Burrow 0.333000"/>
         <On Terms="ActorCreation" Send="SetTintColor 150,210,83"/>
         <On Terms="UnitBirth.Devourer" Send="SetTintColor 150,210,83"/>
         <On Terms="UnitBirth.Devourer2" Send="SetTintColor 150,210,83"/>
@@ -12136,6 +12134,8 @@
         <On Terms="Abil.L3LaunchGrenade.SourcePrepStart" Send="AnimBracketStart {Attack Superior} {} {} {} ContentPlayOnce"/>
         <On Terms="Abil.L3LaunchGrenade.SourceFinishStop" Send="AnimBracketStop {Attack Superior}"/>
         <On Terms="UnitMovementUpdate.*.Walk" Send="AnimClear Reload"/>
+        <On Terms="ActorCreation.PsiOps" Send="Create GhostOverlaySelection"/>
+        <On Terms="ActorCreation.PsiOps" Send="ModelAllowHitTest"/>
         <Model value="Nova"/>
         <BuildModel value="Nova"/>
         <DeathArray index="Normal" ModelLink="NovaDeath" SoundLink="Nova_Death"/>
